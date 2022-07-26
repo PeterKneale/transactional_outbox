@@ -2,6 +2,10 @@
 
 namespace Demo.Core.Infrastructure.Persistence;
 
+public interface IDomainEventDispatcher
+{
+    Task DispatchDomainEvents(DatabaseContext db);
+}
 public class DomainEventDispatcher : IDomainEventDispatcher
 {
     private readonly IMediator _mediator;

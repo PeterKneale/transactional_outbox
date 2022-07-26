@@ -3,6 +3,11 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Demo.Core.Infrastructure.Persistence;
 
+public interface IUnitOfWork
+{
+    Task BeginTransactionAsync();
+    Task CommitTransactionAsync();
+}
 public class UnitOfWork : IUnitOfWork
 {
     private readonly DatabaseContext _db;

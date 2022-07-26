@@ -1,6 +1,6 @@
 ﻿namespace Demo.Core.IntegrationEvents;
 
-public class UserDataIntegrationEvent
+public class UserNameChangedIntegrationEvent
 {
     public Guid UserId { get; init; }
     

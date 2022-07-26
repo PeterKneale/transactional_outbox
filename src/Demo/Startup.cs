@@ -1,3 +1,4 @@
+using Amazon.SQS;
 using Demo.Core.Application;
 using Demo.Core.Infrastructure;
 
@@ -18,6 +19,9 @@ public class Startup
         services.AddApplication();
         services.AddLogging();
         services.AddInfrastructure(_configuration);
+        
+        services.AddDefaultAWSOptions(_configuration.GetAWSOptions());
+        services.AddAWSService<IAmazonSQS>();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -23,7 +23,6 @@ public static class ServiceCollectionExtensions
         }
         
         services.AddScoped<IUserRepository, UserRepository>();
-        
         services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddDbContext<DatabaseContext>(options =>
@@ -44,10 +43,8 @@ public static class ServiceCollectionExtensions
                 .WithGlobalConnectionString(connectionString)
                 .ScanIn(Assembly.GetExecutingAssembly()).For.Migrations());
         
-        // outbox
         services.AddScoped<IOutboxRepository, OutboxRepository>();
-        services
-            .AddHostedService<OutboxPoller>();
+        services.AddHostedService<OutboxProcessor>();
         
         return services;
     }
